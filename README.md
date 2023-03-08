@@ -28,7 +28,10 @@ Installation
 
 Usage
 
-Once the application is running, upload an image using the “Upload Image” button.
-The application will extract the text from the image and display it in the “Extracted Text” section.
-The extracted text will include the Website URL, Email, Pin Code, Phone Number(s), and Address.
-Note: The application can extract text in English language only.
+    Once the application is running, upload an image using the “Upload Image” button.
+    
+    The application will extract the text from the image and display it in the “Extracted Text” section.
+    
+    The extracted text will include the Website URL, Email, Pin Code, Phone Number(s), and Address.
+    
+    Note: The application can extract text in English language only.
