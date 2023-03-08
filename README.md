@@ -57,6 +57,7 @@ Limitations
     This can happen due to various factors such as low-quality input data or unexpected changes in the input data.
     
 Note
+
     The application can extract text in English language only.
     
     It will extract information only from BUSINESS CARDS 
