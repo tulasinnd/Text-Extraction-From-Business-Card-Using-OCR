@@ -2,6 +2,8 @@
 
 Application Link: https://tulasinnd-text-extraction-from-business-card-usi-ocr-app-c78inw.streamlit.app/
 
+Application Demo Video Link: https://www.linkedin.com/posts/tulasi-n-49b6111b0_unlocking-data-from-business-cards-using-activity-7039308472575815680-Zwd9?utm_source=share&utm_medium=member_desktop
+
 This code is an OCR application that extracts text from images uploaded by users, using the EasyOCR library. 
 The extracted text is then processed to extract information such as email, phone number, pin code, address, 
 and website URL, and displayed on a Streamlit web app interface.
