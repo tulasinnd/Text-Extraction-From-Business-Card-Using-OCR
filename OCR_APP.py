@@ -7,7 +7,7 @@ import re
 import pandas as pd
 
 #title
-st.title(":orange[UNLOCKING TEXT FROM IMAGES: OCR FOR TEXT EXTRACTION]") 
+st.title(":orange[UNLOCKING DATA FROM BUSINESS CARDS: OCR FOR TEXT EXTRACTION]") 
 st.write(" ")
 col1, col2,col3= st.columns([3,0.5,4.5])
 with col1:
