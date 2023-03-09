@@ -60,7 +60,8 @@ if image is not None:
                        
         # TO FIND PHONE NUMBER    
         # match = re.search(r'(?:ph|phone|phno)?(?:[+-]?\d*){7,}', string)
-        match = re.search(r'(?:ph|phone|phno)?\s*(?:[+-]?\d\s*){7,}', string)
+        #match = re.search(r'(?:ph|phone|phno)?\s*(?:[+-]?\d\s*){7,}', string)
+        match = re.search(r'(?:ph|phone|phno)?\s*(?:[+-]?\d\s*[\(\)]*){7,}', string)
         if match and len(re.findall(r'\d', string)) > 7:
             PH.append(match.group())
             PHID.append(i)
@@ -69,7 +70,8 @@ if image is not None:
         keywords = ['road', 'floor', ' st ', 'st,', 'street', ' dt ', 'district',
                     'near', 'beside', 'opposite', ' at ', ' in ', 'center', 'main road',
                    'state','country', 'post','zip','city','zone','mandal','town','rural',
-                    'circle','next to','across from','area','building','towers','village']
+                    'circle','next to','across from','area','building','towers','village',
+                    ' ST ',' VA ',' VA,',' EAST ',' WEST ',' NORTH ',' SOUTH ']
         # Define the regular expression pattern to match six or seven continuous digits
         digit_pattern = r'\d{6,7}'
         # Check if the string contains any of the keywords or a sequence of six or seven digits
