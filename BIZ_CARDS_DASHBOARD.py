@@ -166,12 +166,14 @@ if image is not None:
     address=add_str
     det_str = ' '.join([str(elem) for elem in fin])
     details=det_str
+    image_data = image.read()
+    st.write(image_data)
+
 
     if st.button('UPLOAD TO DATABASE',key=90):
         if image is not None:
             # Read image data
             image_data = image.read()
-
             # Insert image data into MySQL database
             data = (website, email, pincode , phoneno, address, details, image_data)
             sql = "INSERT INTO business_cards (website_url, email, pin_code, phone_numbers, address, card_holder_details, businesscard_photo) VALUES (%s, %s, %s, %s, %s, %s, %s)"
@@ -231,8 +233,8 @@ for row in rows:
         cursor.execute("SELECT businesscard_photo FROM business_cards WHERE id ="+str(row[0]))
         r = cursor.fetchone()
         if r is not None:
-            image_data = r[0]
-            st.write(image_data)
+            image_d = r[0]
+            st.write(image_d)
 
        
 
