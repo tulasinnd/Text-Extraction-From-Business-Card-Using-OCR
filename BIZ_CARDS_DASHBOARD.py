@@ -181,7 +181,8 @@ if image is not None:
                 # Load image data into Pillow image object
                 pil_image = Image.open(io.BytesIO(image_data))
                 # Display the image in Streamlit
-                st.image(pil_image)
+                #st.image(pil_image)
+                st.write(pil_image)
             except Image.UnidentifiedImageError as e:
                 st.write("Error loading image: {}".format(e))
         else:
