@@ -36,10 +36,10 @@ cursor = connection.cursor()
 #title
 st.title(":orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]") 
 st.write(" ")
-col1, col2,col3= st.columns([3,0.5,4.5])
+col1, col2,col3= st.columns([3,1,4])
 with col1:
     #image uploader
-    st.write("## UPLOAD IMAGE")
+    st.write("### SELECT ANY BUSINESS CARD IMAGE")
     image = st.file_uploader(label = "",type=['png','jpg','jpeg'])
 
 @st.cache
@@ -132,7 +132,7 @@ if image is not None:
             WID=i 
     with col3: 
         # DISPLAY ALL THE ELEMENTS OF BUSINESS CARD 
-        st.write("## EXTRACTED TEXT")
+        st.write("### EXTRACTED TEXT")
         st.write('##### :red[WEBSITE URL: ] '+ str(WEB))
         st.write('##### :red[EMAIL: ] '+ str(EMAIL)) 
         st.write('##### :red[PIN CODE: ] '+ str(PIN)) 
@@ -225,9 +225,9 @@ if image is not None:
 # print('deleted')
 # connection.commit()
 
-c1, c2,c3= st.columns([3,0.5,4.5])
+c1, c2,c3= st.columns([3,1,4])
 with c1: 
-    st.write("### BUSINESS CARDS IN DATABASE")
+    st.write("### BUSINESS CARDS AVAILABLE IN DATABASE")
     cursor.execute("SELECT id FROM business_cards")
     rows = cursor.fetchall()
 
@@ -246,7 +246,8 @@ with c1:
 
 
             with c3:                     # Display the details of the business card
-                st.write(f"# Business Card Details: ")
+                st.write(f"### BUSINESS CARD {row[0]} DETAILS ")
+                delete=st.button('DELETE {row[0]}', key='del')
                 st.write(f"Website: {website_url}")
                 st.write(f"Email: {email}")
                 st.write(f"PIN Code: {pin_code}")
