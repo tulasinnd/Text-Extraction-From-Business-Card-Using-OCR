@@ -286,7 +286,7 @@ with c1:
 with c1:
     selected_options = st.multiselect('Select entries to delete:', l)
 
-    if st.button('DELETE SELECTED'):
+    if st.button('DELETE SELECTED ENTRIES'):
         for option in selected_options:
             cursor.execute("DELETE FROM business_cards WHERE id = " +str(option))
         connection.commit()
