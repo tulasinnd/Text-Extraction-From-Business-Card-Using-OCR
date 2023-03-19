@@ -225,44 +225,48 @@ if image is not None:
 # print('deleted')
 # connection.commit()
 
+c1, c2,c3= st.columns([3,0.5,4.5])
+with c1: 
+    cursor.execute("SELECT id FROM business_cards")
+    rows = cursor.fetchall()
 
-cursor.execute("SELECT id FROM business_cards")
-rows = cursor.fetchall()
-
-# DISPLAY THE SELECTED CARD AND ITS DETAILS
-for row in rows:
-    button_label = f"SHOW BUSINESS CARD WITH ID: {row[0]}"
-    if st.button(button_label):
-        cursor.execute("SELECT * FROM business_cards WHERE id ="+str(row[0]))
-        row1 = cursor.fetchone()
-        website_url = row1[1]
-        email = row1[2]
-        pin_code = row1[3]
-        phone_numbers = row1[4]
-        address = row1[5]
-        card_holder_details = row1[6]
+    # DISPLAY THE SELECTED CARD AND ITS DETAILS
+    for row in rows:
+        button_label = f"SHOW BUSINESS CARD WITH ID: {row[0]}"
+        if st.button(button_label):
+            cursor.execute("SELECT * FROM business_cards WHERE id ="+str(row[0]))
+            row1 = cursor.fetchone()
+            website_url = row1[1]
+            email = row1[2]
+            pin_code = row1[3]
+            phone_numbers = row1[4]
+            address = row1[5]
+            card_holder_details = row1[6]
 
 
-                # Display the details of the business card
-        st.write(f"# Business Card Details: ")
-        st.write(f"Website: {website_url}")
-        st.write(f"Email: {email}")
-        st.write(f"PIN Code: {pin_code}")
-        st.write(f"Phone Numbers: {phone_numbers}")
-        st.write(f"Address: {address}")
-        st.write(f"Card Holder & Company Details: {card_holder_details}")
-        
-        # If the button is clicked, display the corresponding row
-        # Retrieve image data from MySQL database and display image
-        cursor.execute("SELECT businesscard_photo FROM business_cards WHERE id ="+str(row[0]))
-        r = cursor.fetchone()
-        if r is not None:
-            image_data = r[0]
-            #st.write(image_data)
-            #image_data.seek(0)
-            #st.write(image_data)
-            image = Image.open(io.BytesIO(image_data))
-            st.image(image)
+                    # Display the details of the business card
+            st.write(f"# Business Card Details: ")
+            st.write(f"Website: {website_url}")
+            st.write(f"Email: {email}")
+            st.write(f"PIN Code: {pin_code}")
+            st.write(f"Phone Numbers: {phone_numbers}")
+            st.write(f"Address: {address}")
+            st.write(f"Card Holder & Company Details: {card_holder_details}")
+
+            # If the button is clicked, display the corresponding row
+            # Retrieve image data from MySQL database and display image
+            cursor.execute("SELECT businesscard_photo FROM business_cards WHERE id ="+str(row[0]))
+            r = cursor.fetchone()
+            if r is not None:
+                image_data = r[0]
+                #st.write(image_data)
+                #image_data.seek(0)
+                #st.write(image_data)
+                image = Image.open(io.BytesIO(image_data))
+                st.image(image)
+            
+
+    
 
        
 
