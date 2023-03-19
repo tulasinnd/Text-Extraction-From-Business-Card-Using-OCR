@@ -185,7 +185,7 @@ if image is not None:
 st.write(' ')
 st.write(' ')
 
-col1.markdown("<style>div[data-testid='stHorizontalBlock'] { background-color: rgb(230, 0, 172, 0.2); }</style>", unsafe_allow_html=True)
+col1.markdown("<style>div[data-testid='stHorizontalBlock'] { background-color: rgb(230, 0, 172, 0.1); }</style>", unsafe_allow_html=True)
 # DATABASE PART
 st.write('## EXPLORE BUSINESS CARDS DATABASE ')
 cd, c1, c2,c3= st.columns([0.5, 4,1,4])
