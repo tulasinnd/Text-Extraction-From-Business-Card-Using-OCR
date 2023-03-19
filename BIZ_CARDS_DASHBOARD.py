@@ -252,8 +252,12 @@ with c1:
 
             with c3:                     # Display the details of the business card
                 st.write(f"### BUSINESS CARD {row[0]} DETAILS ")
-                if st.button('DELETE', key='del'):
-                    cursor.execute("DELETE FROM business_cards WHERE id = "+str(row[0]))
+                d=st.button('DELETE', key='del')
+                if d:
+                    q="DELETE FROM business_cards WHERE id = "+str(row[0])
+                    print(q)
+                    res=cursor.execute(q)
+                    print(res)                    
                     connection.commit()
                     st.write("DELETED BUSINESS CARD INFORMATION SUCCESS")
 
