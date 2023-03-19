@@ -253,6 +253,8 @@ with c1:
             with c3:                     # Display the details of the business card
                 st.write(f"### BUSINESS CARD {row[0]} DETAILS ")
                 d=st.button('DELETE', key='del')
+                st.write(row[0])
+                st.write(d)
                 if d:
                     q = "DELETE FROM business_cards WHERE id = %s"
                     cursor.execute(q, (row[0],))
