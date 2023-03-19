@@ -288,7 +288,7 @@ with c1:
 
     if st.button('DELETE SELECTED'):
         for option in selected_options:
-            cursor.execute("DELETE FROM business_cards WHERE id = " + option)
+            cursor.execute("DELETE FROM business_cards WHERE id = " +str(option))
         connection.commit()
         st.write("DELETED SELECTED BUSINESS CARD ENTRIES SUCCESSFULLY")
 
