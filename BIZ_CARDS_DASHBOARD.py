@@ -237,9 +237,11 @@ with c1:
     st.write("### BUSINESS CARDS AVAILABLE IN DATABASE")
     cursor.execute("SELECT id FROM business_cards")
     rows = cursor.fetchall()
+    l=[]
 
     # DISPLAY THE SELECTED CARD AND ITS DETAILS
     for row in rows:
+        l.append(row[0])
         button_label = f"SHOW BUSINESS CARD: {row[0]}"
         if st.button(button_label):
             cursor.execute("SELECT * FROM business_cards WHERE id ="+str(row[0]))
@@ -271,6 +273,17 @@ with c1:
                     #st.write(image_data)
                     image = Image.open(io.BytesIO(image_data))
                     st.image(image)
+                    
+option = st.selectbox(
+    'select any id to delete',
+    l)
+
+st.write('You selected:', option)   
+if st.button("DELETE", key=option):
+    cursor.execute("DELETE FROM business_cards WHERE id = "+str(option))
+    connection.commit()
+    st.write("DELETED BUSINESS CARD INFORMATION SUCCESS")
+
                     
                 
             
