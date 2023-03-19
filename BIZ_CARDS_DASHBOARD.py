@@ -254,10 +254,8 @@ with c1:
                 st.write(f"### BUSINESS CARD {row[0]} DETAILS ")
                 d=st.button('DELETE', key='del')
                 if d:
-                    q="DELETE FROM business_cards WHERE id = "+str(row[0])
-                    print(q)
-                    res=cursor.execute(q)
-                    print(res)                    
+                    q = "DELETE FROM business_cards WHERE id = %s"
+                    cursor.execute(q, (row[0],))
                     connection.commit()
                     st.write("DELETED BUSINESS CARD INFORMATION SUCCESS")
 
