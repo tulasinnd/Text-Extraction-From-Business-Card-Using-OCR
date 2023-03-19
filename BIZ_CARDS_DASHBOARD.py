@@ -27,7 +27,7 @@ def format_title(title: str):
     """
     Formats the given title with a colored box and padding
     """
-    formatted_title = f"<div style='padding:10px;background-color:rgb(230, 0, 172, 0.3);border-radius:10px'><h1 style='color:white;text-align:center;'>{title}</h1></div>"
+    formatted_title = f"<div style='padding:10px;background-color:rgb(230, 0, 172, 0.3);border-radius:10px'><h1 style='color:rgb(255, 51, 204);text-align:center;'>{title}</h1></div>"
     return formatted_title
 
 # Use the function to format your title
