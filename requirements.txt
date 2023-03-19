@@ -1,4 +1,5 @@
 streamlit
+pymysql
 easyocr
 numpy
 Pillow==8.4.0
