@@ -166,31 +166,33 @@ if image is not None:
     address=add_str
     det_str = ' '.join([str(elem) for elem in fin])
     details=det_str
-    
-    #uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+    image.seek(0)
     image_data = image.read()
-    st.write(image_data)
-    st.write(input_image)
-    st.write(image)
-    if image is not None:
-        # Load image data into bytes object
-        image.seek(0)
-        image_data = image.read()
-        st.write(image_data)
-        if image_data:
-            try:
-                # Load image data into Pillow image object
-                pil_image = Image.open(io.BytesIO(image_data))
-                # Display the image in Streamlit
-                #st.image(pil_image)
-                st.write(pil_image)
-            except Image.UnidentifiedImageError as e:
-                st.write("Error loading image: {}".format(e))
-        else:
-            st.write("No image data available.")
-    else:
-        st.write("Please upload an image.")
-#uuuuuuuuuuuuuuuuuuuuuuuuuu
+    
+#     #uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+#     image_data = image.read()
+#     st.write(image_data)
+#     st.write(input_image)
+#     st.write(image)
+#     if image is not None:
+#         # Load image data into bytes object
+#         image.seek(0)
+#         image_data = image.read()
+#         st.write(image_data)
+#         if image_data:
+#             try:
+#                 # Load image data into Pillow image object
+#                 pil_image = Image.open(io.BytesIO(image_data))
+#                 # Display the image in Streamlit
+#                 #st.image(pil_image)
+#                 st.write(pil_image)
+#             except Image.UnidentifiedImageError as e:
+#                 st.write("Error loading image: {}".format(e))
+#         else:
+#             st.write("No image data available.")
+#     else:
+#         st.write("Please upload an image.")
+# #uuuuuuuuuuuuuuuuuuuuuuuuuu
 
     if st.button('UPLOAD TO DATABASE',key=90):
         if image is not None:
@@ -255,8 +257,9 @@ for row in rows:
         cursor.execute("SELECT businesscard_photo FROM business_cards WHERE id ="+str(row[0]))
         r = cursor.fetchone()
         if r is not None:
-            image_d = r[0]
-            st.write(image_d)
+            image_data = r[0]
+            image = Image.open(io.BytesIO(image_data))
+            st.image(image)
 
        
 
