@@ -230,17 +230,23 @@ for row in rows:
         # Retrieve image data from MySQL database and display image
         cursor.execute("SELECT businesscard_photo FROM business_cards WHERE id ="+str(row[0]))
         r = cursor.fetchone()
+        import imageio
+        import io
+
+        if r is not None:
+            image_data = r[0]
+            try:
+                image = imageio.imread(io.BytesIO(image_data))
+                st.image(image)
+            except Exception as e:
+                st.write("Error loading image: {}".format(e))
 #         if r is not None:
 #             image_data = r[0]
 #             from PIL import Image
 #             import io
 #             image = Image.open(io.BytesIO(image_data))
 #             st.image(image)
-        if r is not None:
-            image_data = r[0]
-            with open('temp_image.jpg', 'wb') as f:
-                f.write(image_data)
-            st.image('temp_image.jpg')
+       
 
         
 
