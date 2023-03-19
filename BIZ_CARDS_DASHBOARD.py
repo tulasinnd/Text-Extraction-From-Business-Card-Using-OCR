@@ -184,7 +184,7 @@ if image is not None:
 st.write(' ')
 st.write(' ')
 st.write(' ')
-
+col1.markdown("<style>div.stButton > button:first-child { background-color: red; }</style>", unsafe_allow_html=True)
 # DATABASE PART
 st.write('## EXPLORE BUSINESS CARDS DATABASE ')
 c1, c2,c3= st.columns([4,1,4])
