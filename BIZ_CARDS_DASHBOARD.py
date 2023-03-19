@@ -256,11 +256,11 @@ with c1:
                 st.write(row[0])
                 st.write(not d)
                 q = "DELETE FROM business_cards WHERE id ="+str(row[0])
-                print(q)
-                if d:
-                    q = "DELETE FROM business_cards WHERE id = %s"
-                    cursor.execute(q, (row[0],))
-                    connection.commit()
+                st.write(q)
+                if not d:
+#                     q = "DELETE FROM business_cards WHERE id = %s"
+#                     cursor.execute(q, (row[0],))
+#                     connection.commit()
                     st.write("DELETED BUSINESS CARD INFORMATION SUCCESS")
 
                 st.write(f"Website: {website_url}")
