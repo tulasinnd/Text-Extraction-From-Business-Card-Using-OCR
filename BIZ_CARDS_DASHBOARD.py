@@ -198,7 +198,6 @@ if image is not None:
     if st.button('UPLOAD TO DATABASE',key=90):
         if image is not None:
             # Read image data
-            image_data = image.read()
             # Insert image data into MySQL database
             data = (website, email, pincode , phoneno, address, details, image_data)
             sql = "INSERT INTO business_cards (website_url, email, pin_code, phone_numbers, address, card_holder_details, businesscard_photo) VALUES (%s, %s, %s, %s, %s, %s, %s)"
@@ -262,8 +261,8 @@ for row in rows:
             st.write(image_data)
             image_data.seek(0)
             st.write(image_data)
-#             image = Image.open(io.BytesIO(image_data))
-#             st.image(image)
+            image = Image.open(io.BytesIO(image_data))
+            st.image(image)
 
        
 
