@@ -273,6 +273,10 @@ with c1:
                     
                 if st.button("DELETE", key=row[0]):
                     cursor.execute("DELETE FROM business_cards WHERE id = "+str(row[0]))
+                    if cursor.rowcount == -1:
+                        print("Query failed to affect any rows.")
+                    else:
+                        print(f"Deleted {cursor.rowcount} rows.")
                     connection.commit()
                     st.write("DELETED BUSINESS CARD INFORMATION SUCCESS")
 
