@@ -23,64 +23,15 @@ connection = pymysql.connect(
 cursor = connection.cursor()
 
 #title
-# def format_title(title: str):
-#     """
-#     Formats the given title with a colored box and padding
-#     """
-#     formatted_title = f"<div style='padding:10px;background-color:#F5A962;border-radius:10px'><h1 style='color:white;text-align:center;'>{title}</h1></div>"
-#     return formatted_title
-
-# # Use the function to format your title
-# st.markdown(format_title("UNLOCKING DATA FROM BUSINESS CARDS USING OCR"), unsafe_allow_html=True)
-# # st.title(":orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]") 
-st.markdown(
+def format_title(title: str):
     """
-<style>
-.title {
-    background: linear-gradient(to right, #ffecd2, #fcb69f);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.animate {
-    animation: neon 1.5s ease-in-out infinite alternate;
-}
-@keyframes neon {
-    from {
-        text-shadow:
-            0 0 1px #fff,
-            0 0 2px #fff,
-            0 0 4px #fff,
-            0 0 4px #ff00de,
-            0 0 10px #ff00de,
-            0 0 14px #ff00de,
-            0 0 13px #ff00de,
-            0 0 20px #ff00de;
-    }
-    to {
-        text-shadow:
-            0 0 2px #fff,
-            0 0 4px #fff,
-            0 0 6px #fff,
-            0 0 8px #ff00de,
-            0 0 14px #ff00de,
-            0 0 16px #ff00de,
-            0 0 20px #ff00de,
-            0 0 30px #ff00de;
-    }
-}
-</style>
-""",
-    unsafe_allow_html=True,
-)
-
-st.markdown(
+    Formats the given title with a colored box and padding
     """
-    <h1 class="title animate">UNLOCKING DATA FROM BUSINESS CARDS USING OCR</h1>
-    """,
-    unsafe_allow_html=True,
-)
+    formatted_title = f"<div style='padding:10px;background-color:#F5A962;border-radius:10px'><h1 style='color:white;text-align:center;'>{title}</h1></div>"
+    return formatted_title
 
-
+# Use the function to format your title
+st.markdown(format_title("UNLOCKING DATA FROM BUSINESS CARDS USING OCR"), unsafe_allow_html=True)
 
 st.write(" ")
 st.write(" ")
