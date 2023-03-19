@@ -145,6 +145,14 @@ if image is not None:
 
 #     data = (website, email,pincode , phoneno, address, details, photo)
 #    photo= image.read()
+    import tempfile
+    with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+            temp_file.write(image.read())
+            temp_file.flush()
+
+            # Read the contents of the temporary file as bytes
+            with open(temp_file.name, 'rb') as file:
+                photo = file.read()
 
 
     import base64
@@ -183,7 +191,7 @@ if image is not None:
         # with open(r'C:\Users\91939\OneDrive\Desktop\OCR_P7\DATASET\10.jpg', 'rb') as file:
         #     photo = file.read()
 
-        data = (website, email,pincode , phoneno, address, details, io.BytesIO(image.read()))
+        data = (website, email,pincode , phoneno, address, details, photo)
         sql = "INSERT INTO business_cards (website_url, email, pin_code, phone_numbers, address, card_holder_details, businesscard_photo) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         cursor.execute(sql, data)
         cnx.commit()
@@ -217,53 +225,9 @@ if image is not None:
             st.write(f"PIN Code: {pin_code}")
             st.write(f"Phone Numbers: {phone_numbers}")
             st.write(f"Address: {address}")
-#             image = Image.open(io.BytesIO(photo))
-#             st.image(image, caption="Business Card", use_column_width=True)
-
-            print(type(photo))
-            print(photo)
-            image_data = BytesIO(photo)
-            image = Image.open(image_data)
-            st.image(image, caption="Business Card", use_column_width=True)
- 
-#             img_data = row[7]
-#             img_b64 = base64.b64encode(img_data).decode('utf-8')
-
-            # Display the image in Streamlit
-#             st.image(img_b64, format='png')
-
-
-
-    # =========================================
-
-    # # Retrieve the image from the business_cards table
-    # cursor.execute("SELECT * FROM business_cards ")#WHERE id=1")
-    # row = cursor.fetchone()
-    # website_url = row[1]
-    # email = row[2]
-    # pin_code = row[3]
-    # phone_numbers = row[4]
-    # address = row[5]
-    # card_holder_details = row[6]
-    # photo = row[7]
-
-    # # Display the image using Streamlit
-    # st.write(f"# Business Card for {card_holder_details}")
-    # st.write(f"Website: {website_url}")
-    # st.write(f"Email: {email}")
-    # st.write(f"PIN Code: {pin_code}")
-    # st.write(f"Phone Numbers: {phone_numbers}")
-    # st.write(f"Address: {address}")
-    # image = Image.open(io.BytesIO(photo))
-    # st.image(image, caption="Business Card", use_column_width=True)
-
-    # # Close the database connection
-    # cursor.close()
-    # cnx.close()
-
-
-
-        
-
-        
-
+            img = Image.open(io.BytesIO(photo))
+            st.image(img, caption='Uploaded Image', use_column_width=True)
+            
+            
+            
+            
