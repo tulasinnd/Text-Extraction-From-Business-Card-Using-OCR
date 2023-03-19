@@ -140,20 +140,6 @@ if image is not None:
     address=add_str
     det_str = ' '.join([str(elem) for elem in fin])
     details=det_str
-#     with open(image, 'rb') as file:
-#         photo = file.read()
-
-#     data = (website, email,pincode , phoneno, address, details, photo)
-#    photo= image.read()
-    import tempfile
-    with tempfile.NamedTemporaryFile(delete=False) as temp_file:
-            temp_file.write(image.read())
-            temp_file.flush()
-
-            # Read the contents of the temporary file as bytes
-            with open(temp_file.name, 'rb') as file:
-                photo = file.read()
-
 
     import base64
     import pymysql
@@ -186,12 +172,10 @@ if image is not None:
     # """)
 
     if st.button('UPLOAD BUSINESS CARD',key='biz'):
-
-        # Insert the image into the business_cards table
-        # with open(r'C:\Users\91939\OneDrive\Desktop\OCR_P7\DATASET\10.jpg', 'rb') as file:
-        #     photo = file.read()
-
-        data = (website, email,pincode , phoneno, address, details, photo)
+        if image is not None:
+            # Read image data
+            image_data = image.read()
+        data = (website, email,pincode , phoneno, address, details, image_data)
         sql = "INSERT INTO business_cards (website_url, email, pin_code, phone_numbers, address, card_holder_details, businesscard_photo) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         cursor.execute(sql, data)
         cnx.commit()
