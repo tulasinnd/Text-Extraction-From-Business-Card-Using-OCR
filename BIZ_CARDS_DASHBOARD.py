@@ -161,6 +161,8 @@ if image is not None:
         for i in fin:
             st.write('##### '+i)
             
+        UP= st.button('UPLOAD TO DATABASE',key=90)
+            
 # DATABASE CODE
     website=str(WEB)
     email=str(EMAIL)
@@ -198,7 +200,7 @@ if image is not None:
 #         st.write("Please upload an image.")
 # #uuuuuuuuuuuuuuuuuuuuuuuuuu
 
-    if st.button('UPLOAD TO DATABASE',key=90):
+    if UP:
         if image is not None:
             # Read image data
             # Insert image data into MySQL database
