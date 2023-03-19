@@ -33,7 +33,8 @@ cursor = connection.cursor()
 # # Use the function to format your title
 # st.markdown(format_title("UNLOCKING DATA FROM BUSINESS CARDS USING OCR"), unsafe_allow_html=True)
 # # st.title(":orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]") 
-
+st.markdown(
+    """
 <style>
 .title {
     background: linear-gradient(to right, #ffecd2, #fcb69f);
@@ -68,8 +69,16 @@ cursor = connection.cursor()
     }
 }
 </style>
+""",
+    unsafe_allow_html=True,
+)
 
-<h1 class="title animate">:orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]</h1>
+st.markdown(
+    """
+    <h1 class="title animate">UNLOCKING DATA FROM BUSINESS CARDS USING OCR</h1>
+    """,
+    unsafe_allow_html=True,
+)
 
 
 
