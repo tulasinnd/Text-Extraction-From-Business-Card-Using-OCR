@@ -36,10 +36,13 @@ cursor = connection.cursor()
 #title
 st.title(":orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]") 
 st.write(" ")
-col1, col2,col3= st.columns([3,1,4])
+st.write(" ")
+st.write(" ")
+st.write("# UPLOAD ANY BUSINESS CARD IMAGE TO EXTRACT INFORMATION ")
+col1, col2,col3= st.columns([3,2,3])
 with col1:
     #image uploader
-    st.write("### SELECT ANY BUSINESS CARD IMAGE")
+    st.write("### SELECT IMAGE")
     image = st.file_uploader(label = "",type=['png','jpg','jpeg'])
 
 @st.cache
@@ -228,7 +231,7 @@ st.write(' ')
 st.write(' ')
 st.write(' ')
 st.write('# EXPLORE BUSINESS CARDS DATABASE ')
-c1, c2,c3= st.columns([3,1,4])
+c1, c2,c3= st.columns([3,2,3])
 with c1: 
     st.write("### BUSINESS CARDS AVAILABLE IN DATABASE")
     cursor.execute("SELECT id FROM business_cards")
@@ -237,8 +240,7 @@ with c1:
     # DISPLAY THE SELECTED CARD AND ITS DETAILS
     for row in rows:
         button_label = f"SHOW BUSINESS CARD WITH ID: {row[0]}"
-        viw=st.button(button_label)
-        if viw:
+        if st.button(button_label):
             cursor.execute("SELECT * FROM business_cards WHERE id ="+str(row[0]))
             row1 = cursor.fetchone()
             website_url = row1[1]
@@ -248,12 +250,9 @@ with c1:
             address = row1[5]
             card_holder_details = row1[6]
 
-
             with c3:                     # Display the details of the business card
-                if not viw:
-                    st.write("#### SELECTED BUSINESS CARD DETAILS WILL APPEAR HERE")
                 st.write(f"### BUSINESS CARD {row[0]} DETAILS ")
-                delete=st.button('DELETE {row[0]}', key='del')
+                delete=st.button('DELETE', key='del')
                 st.write(f"Website: {website_url}")
                 st.write(f"Email: {email}")
                 st.write(f"PIN Code: {pin_code}")
