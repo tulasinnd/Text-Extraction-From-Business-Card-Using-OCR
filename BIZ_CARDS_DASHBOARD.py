@@ -5,6 +5,33 @@ import numpy as np #Image Processing
 st. set_page_config(layout="wide")
 import re
 import pandas as pd
+################ AWS-RDS-Mysql
+
+import base64
+import pymysql
+import streamlit as st
+from PIL import Image
+import io
+
+# Connect to the database
+connection = pymysql.connect(
+    host='phonepedatabase.cw0dknqm0t6h.us-east-1.rds.amazonaws.com',
+    user='admin',
+    password='12345phone',
+    database="PhonepeDB"
+)
+
+# website=str(WEB)
+# email=str(EMAIL)
+# pincode=str(PIN)
+# phoneno=ph_str
+# address=add_str
+# det_str = ' '.join([str(elem) for elem in fin])
+# details=det_str
+
+cursor = connection.cursor()
+
+################
 
 #title
 st.title(":orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]") 
@@ -132,7 +159,6 @@ if image is not None:
             st.write('##### '+i)
             
 # DATABASE CODE
-
     website=str(WEB)
     email=str(EMAIL)
     pincode=str(PIN)
@@ -141,77 +167,74 @@ if image is not None:
     det_str = ' '.join([str(elem) for elem in fin])
     details=det_str
 
-    import base64
-    import pymysql
-    import streamlit as st
-    from PIL import Image
-    import io
-    from io import BytesIO
-
-    # Connect to the database
-    cnx = pymysql.connect(
-        host='phonepedatabase.cw0dknqm0t6h.us-east-1.rds.amazonaws.com',
-        user='admin',
-        password='12345phone',
-        database="PhonepeDB"
-    )
-
-    # Create the business_cards table with additional columns
-    cursor = cnx.cursor()
-    # cursor.execute("""
-    #     CREATE TABLE IF NOT EXISTS business_cards (
-    #         id INT AUTO_INCREMENT PRIMARY KEY,
-    #         website_url VARCHAR(255),
-    #         email VARCHAR(255),
-    #         pin_code VARCHAR(10),
-    #         phone_numbers VARCHAR(255),
-    #         address VARCHAR(255),
-    #         card_holder_details VARCHAR(255),
-    #         businesscard_photo MEDIUMBLOB
-    #     )
-    # """)
-
-    if st.button('UPLOAD BUSINESS CARD',key='biz'):
+    if st.button('UPLOAD TO DATABASE',key=90):
         if image is not None:
             # Read image data
             image_data = image.read()
-        data = (website, email,pincode , phoneno, address, details, image_data)
-        sql = "INSERT INTO business_cards (website_url, email, pin_code, phone_numbers, address, card_holder_details, businesscard_photo) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-        cursor.execute(sql, data)
-        cnx.commit()
 
-    # DISPLAY ID AS BUTTONS CODE 
-    # ========================================
+            # Insert image data into MySQL database
+            data = (website, email, pincode , phoneno, address, details, image_data)
+            sql = "INSERT INTO business_cards (website_url, email, pin_code, phone_numbers, address, card_holder_details, businesscard_photo) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            cursor.execute(sql, data)
+            connection.commit()
 
-    # Retrieve all the ids from the business_cards table
-    cursor.execute("SELECT id FROM business_cards")
-    rows = cursor.fetchall()
+            # cursor.execute("INSERT INTO business_cards (businesscard_photo) VALUES (%s)", (image_data,))
+            # connection.commit()
+            # st.write('uploaded to database')
 
-    # Display the ids as buttons
-    for row in rows:
-        button_label = f"SHOW BUSINESS CARD WITH ID: {row[0]}"
-        if st.button(button_label):
-            # If the button is clicked, display the corresponding row
-            cursor.execute(f"SELECT * FROM business_cards WHERE id={row[0]}")
-            row = cursor.fetchone()
-            website_url = row[1]
-            email = row[2]
-            pin_code = row[3]
-            phone_numbers = row[4]
-            address = row[5]
-            card_holder_details = row[6]
-            photo = row[7]
+            # Retrieve image data from MySQL database and display image
+            # cursor.execute("SELECT businesscard_photo FROM business_cards ORDER BY id DESC LIMIT 1")
+            # row = cursor.fetchone()
+            # if row is not None:
+            #     image_data = row[0]
+            #     image = Image.open(io.BytesIO(image_data))
+            #     st.image(image)
+        else:
+            st.write('Please upload business card')
 
-            # Display the details of the business card
-            st.write(f"# Business Card for {card_holder_details}")
-            st.write(f"Website: {website_url}")
-            st.write(f"Email: {email}")
-            st.write(f"PIN Code: {pin_code}")
-            st.write(f"Phone Numbers: {phone_numbers}")
-            st.write(f"Address: {address}")
-            img = Image.open(io.BytesIO(photo))
-            st.image(img, caption='Uploaded Image', use_column_width=True)
-            
-            
-            
-            
+
+
+
+# cursor.execute("DELETE FROM business_cards")
+# print('deleted')
+# connection.commit()
+
+cursor.execute("SELECT id FROM business_cards")
+rows = cursor.fetchall()
+
+# DISPLAY THE SELECTED CARD AND ITS DETAILS
+for row in rows:
+    button_label = f"SHOW BUSINESS CARD WITH ID: {row[0]}"
+    if st.button(button_label):
+        # If the button is clicked, display the corresponding row
+        # Retrieve image data from MySQL database and display image
+        cursor.execute("SELECT businesscard_photo FROM business_cards WHERE id ="+str(row[0]))
+        r = cursor.fetchone()
+        if r is not None:
+            image_data = r[0]
+            image = Image.open(io.BytesIO(image_data))
+            st.image(image)
+
+        cursor.execute("SELECT * FROM business_cards WHERE id ="+str(row[0]))
+        row1 = cursor.fetchone()
+        website_url = row1[1]
+        email = row1[2]
+        pin_code = row1[3]
+        phone_numbers = row1[4]
+        address = row1[5]
+        card_holder_details = row1[6]
+
+
+                # Display the details of the business card
+        st.write(f"# Business Card Details: ")
+        st.write(f"Website: {website_url}")
+        st.write(f"Email: {email}")
+        st.write(f"PIN Code: {pin_code}")
+        st.write(f"Phone Numbers: {phone_numbers}")
+        st.write(f"Address: {address}")
+        st.write(f"Card Holder & Company Details: {card_holder_details}")
+        
+
+
+
+    
