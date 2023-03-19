@@ -232,13 +232,8 @@ for row in rows:
         r = cursor.fetchone()
         if r is not None:
             image_data = r[0]
-            try:
-                # Load image data into Pillow image object
-                pil_image = Image.open(io.BytesIO(image_data))
-                # Display the image in Streamlit
-                st.image(pil_image)
-            except Exception as e:
-                st.write("Error loading image: {}".format(e))
+            st.write(image_data)
+
        
 
         
