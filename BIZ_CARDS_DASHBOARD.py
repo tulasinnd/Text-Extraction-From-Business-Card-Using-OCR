@@ -25,16 +25,62 @@ connection = pymysql.connect(
 cursor = connection.cursor()
 
 #title
-def format_title(title: str):
-    """
-    Formats the given title with a colored box and padding
-    """
-    formatted_title = f"<div style='padding:10px;background-color:#F5A962;border-radius:10px'><h1 style='color:white;text-align:center;'>{title}</h1></div>"
-    return formatted_title
+# def format_title(title: str):
+#     """
+#     Formats the given title with a colored box and padding
+#     """
+#     formatted_title = f"<div style='padding:10px;background-color:#F5A962;border-radius:10px'><h1 style='color:white;text-align:center;'>{title}</h1></div>"
+#     return formatted_title
 
-# Use the function to format your title
-st.markdown(format_title("UNLOCKING DATA FROM BUSINESS CARDS USING OCR"), unsafe_allow_html=True)
-# st.title(":orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]") 
+# # Use the function to format your title
+# st.markdown(format_title("UNLOCKING DATA FROM BUSINESS CARDS USING OCR"), unsafe_allow_html=True)
+# # st.title(":orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]") 
+
+#00000000000000000000000000000000000000000000000
+import random
+
+# Set page layout
+st.set_page_config(
+    page_title="Unlocking Data from Business Cards using OCR",
+    page_icon=":orange:",
+    layout="wide"
+)
+
+# Define the title with a colored box
+st.markdown("""
+<style>
+h1 {
+    background-color: orange;
+    color: white;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    text-align: center;
+}
+</style>
+""", unsafe_allow_html=True)
+
+st.write("")
+st.write("")
+st.write("")
+st.write("")
+st.write("")
+st.write("")
+
+st.write(
+    "<h1>Unlocking Data from Business Cards using OCR</h1>",
+    unsafe_allow_html=True
+)
+
+# Define some random moving elements in the background
+NUM_ELEMENTS = 30
+elements = ["🔵", "🔴", "🟢", "🟡", "🟣", "🟤", "🟠", "⚫", "⚪"]
+
+for i in range(NUM_ELEMENTS):
+    st.write(
+        f'<span style="position:absolute;top:{random.randint(0, 90)}%;left:{random.randint(0, 90)}%;font-size:{random.randint(10, 60)}px;">{random.choice(elements)}</span>',
+        unsafe_allow_html=True
+    )
+#0000000000000000000000000000000000000000000000000000000000000000000
 st.write(" ")
 st.write(" ")
 st.write(" ")
