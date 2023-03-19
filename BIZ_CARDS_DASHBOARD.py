@@ -36,11 +36,11 @@ st.markdown(format_title("UNLOCKING DATA FROM BUSINESS CARDS USING OCR"), unsafe
 st.write(" ")
 st.write(" ")
 st.write(" ")
-st.write("## UPLOAD ANY BUSINESS CARD IMAGE TO EXTRACT INFORMATION ")
+st.write("### UPLOAD ANY BUSINESS CARD IMAGE TO EXTRACT INFORMATION ")
 CD,col1, col2,col3= st.columns([0.5,4,1,4])
 with col1:
     #image uploader
-    st.write("### SELECT IMAGE")
+    st.write("#### SELECT IMAGE")
     image = st.file_uploader(label = "",type=['png','jpg','jpeg'])
 
 @st.cache
@@ -132,7 +132,7 @@ if image is not None:
             WID=i 
     with col3: 
         # DISPLAY ALL THE ELEMENTS OF BUSINESS CARD 
-        st.write("### EXTRACTED TEXT")
+        st.write("#### EXTRACTED TEXT")
         st.write('##### :blue[WEBSITE URL: ] '+ str(WEB))
         st.write('##### :blue[EMAIL: ] '+ str(EMAIL)) 
         st.write('##### :blue[PIN CODE: ] '+ str(PIN)) 
@@ -187,11 +187,11 @@ st.write(' ')
 
 col1.markdown("<style>div[data-testid='stHorizontalBlock'] { background-color: rgb(230, 0, 172, 0.1); }</style>", unsafe_allow_html=True)
 # DATABASE PART
-st.write('## EXPLORE BUSINESS CARDS DATABASE ')
+st.write('### EXPLORE BUSINESS CARDS DATABASE ')
 cd, c1, c2,c3= st.columns([0.5, 4,1,4])
 with c1: 
     st.write(' ')
-    st.write("### BUSINESS CARDS AVAILABLE IN DATABASE")
+    st.write("#### BUSINESS CARDS AVAILABLE IN DATABASE")
     cursor.execute("SELECT id FROM business_cards")
     rows = cursor.fetchall()
     l=[]
@@ -211,7 +211,7 @@ with c1:
 
             # DISPLAY SELECTED CARD DETAILS
             with c3:                     
-                st.write(f"### BUSINESS CARD {row[0]} DETAILS ")                
+                st.write(f"#### BUSINESS CARD {row[0]} DETAILS ")                
                 st.write(f"Website: {website_url}")
                 st.write(f"Email: {email}")
                 st.write(f"PIN Code: {pin_code}")
@@ -231,7 +231,7 @@ with c1:
 # DELETE MULTIPLE ENTRIES                   
 with c1:
     st.write(' ')
-    st.write(f"### SELECT ENTRIES TO DELETE") 
+    st.write(f"#### SELECT ENTRIES TO DELETE") 
     selected_options = st.multiselect('', l)
 
     if st.button('DELETE SELECTED ENTRIES'):
