@@ -58,14 +58,14 @@ st.markdown(
     }
     to {
         text-shadow:
-            0 0 2px #fff,
             0 0 4px #fff,
-            0 0 6px #fff,
-            0 0 8px #ff00de,
-            0 0 14px #ff00de,
-            0 0 16px #ff00de,
-            0 0 20px #ff00de,
-            0 0 30px #ff00de;
+            0 0 9px #fff,
+            0 0 14px #fff,
+            0 0 22px #ff00de,
+            0 0 30px #ff00de,
+            0 0 42px #ff00de,
+            0 0 48px #ff00de,
+            0 0 70px #ff00de;
     }
 }
 </style>
