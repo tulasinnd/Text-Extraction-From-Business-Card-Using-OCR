@@ -176,6 +176,7 @@ if image is not None:
         # Load image data into bytes object
         image.seek(0)
         image_data = image.read()
+        st.write(image_data)
         if image_data:
             try:
                 # Load image data into Pillow image object
