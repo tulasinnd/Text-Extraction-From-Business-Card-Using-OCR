@@ -133,13 +133,13 @@ if image is not None:
     with col3: 
         # DISPLAY ALL THE ELEMENTS OF BUSINESS CARD 
         st.write("### EXTRACTED TEXT")
-        st.write('##### :red[WEBSITE URL: ] '+ str(WEB))
-        st.write('##### :red[EMAIL: ] '+ str(EMAIL)) 
-        st.write('##### :red[PIN CODE: ] '+ str(PIN)) 
+        st.write('##### :blue[WEBSITE URL: ] '+ str(WEB))
+        st.write('##### :blue[EMAIL: ] '+ str(EMAIL)) 
+        st.write('##### :blue[PIN CODE: ] '+ str(PIN)) 
         ph_str = ' '.join([str(elem) for elem in PH])
-        st.write('##### :red[PHONE NUMBER(S): ] '+ph_str)
+        st.write('##### :blue[PHONE NUMBER(S): ] '+ph_str)
         add_str = ' '.join([str(elem) for elem in ADD])
-        st.write('##### :red[ADDRESS: ] ', add_str)
+        st.write('##### :blue[ADDRESS: ] ', add_str)
 
         IDS= [EID,PID,WID]
         IDS.extend(AID)
@@ -154,7 +154,7 @@ if image is not None:
                         numbers = re.findall('\d+', string)
                         if len(numbers) == 0 or all(len(num) < 3 for num in numbers) and not any(num in string for num in ['0','1','2','3','4','5','6','7','8','9']*3):
                             fin.append(string)
-        st.write('##### :red[CARD HOLDER & COMPANY DETAILS: ] ')
+        st.write('##### :blue[CARD HOLDER & COMPANY DETAILS: ] ')
         for i in fin:
             st.write('##### '+i)
             
