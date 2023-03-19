@@ -216,7 +216,7 @@ if image is not None:
             st.write(f"PIN Code: {pin_code}")
             st.write(f"Phone Numbers: {phone_numbers}")
             st.write(f"Address: {address}")
-            img = Image.open(io.BytesIO(photo.read()))
+            img = Image.open(photo)
             st.image(img)
 #             image = Image.open(io.BytesIO(photo))
 #             st.image(image, caption="Business Card", use_column_width=True)
