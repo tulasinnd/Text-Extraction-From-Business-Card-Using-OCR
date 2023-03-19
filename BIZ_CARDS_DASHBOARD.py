@@ -272,7 +272,7 @@ with c1:
                     image = Image.open(io.BytesIO(image_data))
                     st.image(image)
                 if delete:
-                    cursor.execute("DELETE FROM business_cards WHERE id = %s", (row[0],))
+                    cursor.execute("DELETE FROM business_cards WHERE id = %d", (row[0],))
                     connection.commit()
                     st.write("DELETED BUSINESS CARD INFORMATION SUCCESS")
 
