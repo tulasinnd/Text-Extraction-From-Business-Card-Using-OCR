@@ -230,24 +230,15 @@ for row in rows:
         # Retrieve image data from MySQL database and display image
         cursor.execute("SELECT businesscard_photo FROM business_cards WHERE id ="+str(row[0]))
         r = cursor.fetchone()
-        import imageio
-        import io
-        import os
-        os.environ['IMREAD_BACKEND'] = 'pil'
-
         if r is not None:
             image_data = r[0]
             try:
-                image = imageio.imread(io.BytesIO(image_data))
-                st.image(image)
+                # Load image data into Pillow image object
+                pil_image = Image.open(io.BytesIO(image_data))
+                # Display the image in Streamlit
+                st.image(pil_image)
             except Exception as e:
                 st.write("Error loading image: {}".format(e))
-#         if r is not None:
-#             image_data = r[0]
-#             from PIL import Image
-#             import io
-#             image = Image.open(io.BytesIO(image_data))
-#             st.image(image)
        
 
         
