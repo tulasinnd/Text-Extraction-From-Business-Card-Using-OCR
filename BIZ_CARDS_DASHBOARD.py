@@ -4,10 +4,6 @@ from PIL import Image #Image Processing
 import numpy as np #Image Processing 
 st. set_page_config(layout="wide")
 import re
-import pandas as pd
-################ AWS-RDS-Mysql
-
-import base64
 import pymysql
 import streamlit as st
 from PIL import Image
@@ -20,18 +16,7 @@ connection = pymysql.connect(
     password='12345phone',
     database="PhonepeDB"
 )
-
-# website=str(WEB)
-# email=str(EMAIL)
-# pincode=str(PIN)
-# phoneno=ph_str
-# address=add_str
-# det_str = ' '.join([str(elem) for elem in fin])
-# details=det_str
-
 cursor = connection.cursor()
-
-################
 
 #title
 st.title(":orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]") 
@@ -47,17 +32,15 @@ with col1:
 
 @st.cache
 def load_model(): 
-    reader = ocr.Reader(['en'])#,model_storage_directory='.')
+    reader = ocr.Reader(['en'])
     return reader 
 
 reader = load_model() #load model
-
 if image is not None:
     input_image = Image.open(image) #read image
     with col1:
-        #st.write("## YOUR IMAGE")
-        st.image(input_image) #display image        
-    
+        st.image(input_image) #display image  
+
     result = reader.readtext(np.array(input_image))
     result_text = [] #empty list for results
     for text in result:
@@ -162,7 +145,7 @@ if image is not None:
             st.write('##### '+i)
             
         UP= st.button('UPLOAD TO DATABASE',key=90)
-            
+                    
 # DATABASE CODE
     website=str(WEB)
     email=str(EMAIL)
@@ -173,33 +156,8 @@ if image is not None:
     details=det_str
     image.seek(0)
     image_data = image.read()
-    #st.write(image_data)
     
-#     #uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
-#     image_data = image.read()
-#     st.write(image_data)
-#     st.write(input_image)
-#     st.write(image)
-#     if image is not None:
-#         # Load image data into bytes object
-#         image.seek(0)
-#         image_data = image.read()
-#         st.write(image_data)
-#         if image_data:
-#             try:
-#                 # Load image data into Pillow image object
-#                 pil_image = Image.open(io.BytesIO(image_data))
-#                 # Display the image in Streamlit
-#                 #st.image(pil_image)
-#                 st.write(pil_image)
-#             except Image.UnidentifiedImageError as e:
-#                 st.write("Error loading image: {}".format(e))
-#         else:
-#             st.write("No image data available.")
-#     else:
-#         st.write("Please upload an image.")
-# #uuuuuuuuuuuuuuuuuuuuuuuuuu
-
+# IF UPLOAD BUTTON IS ON, THE DATA IS UPLOADED TO DATABASE
     if UP:
         if image is not None:
             # Read image data
@@ -208,40 +166,21 @@ if image is not None:
             sql = "INSERT INTO business_cards (website_url, email, pin_code, phone_numbers, address, card_holder_details, businesscard_photo) VALUES (%s, %s, %s, %s, %s, %s, %s)"
             cursor.execute(sql, data)
             connection.commit()
-
-#             cursor.execute("INSERT INTO business_cards (businesscard_photo) VALUES (%s)", (image_data,))
-#             connection.commit()
-#             st.write('uploaded to database')
-
-            # Retrieve image data from MySQL database and display image
-            # cursor.execute("SELECT businesscard_photo FROM business_cards ORDER BY id DESC LIMIT 1")
-            # row = cursor.fetchone()
-            # if row is not None:
-            #     image_data = row[0]
-            #     image = Image.open(io.BytesIO(image_data))
-            #     st.image(image)
         else:
             st.write('Please upload business card')
-
-
-
-
-# cursor.execute("DELETE FROM business_cards")
-# print('deleted')
-# connection.commit()
 st.write(' ')
 st.write(' ')
 st.write(' ')
+
+# DATABASE PART
 st.write('## EXPLORE BUSINESS CARDS DATABASE ')
-
 c1, c2,c3= st.columns([4,1,4])
 with c1: 
     st.write("### BUSINESS CARDS AVAILABLE IN DATABASE")
     cursor.execute("SELECT id FROM business_cards")
     rows = cursor.fetchall()
     l=[]
-
-    # DISPLAY THE SELECTED CARD AND ITS DETAILS
+    # DISPLAY ALL THE CARDS AS BUTTONS
     for row in rows:
         l.append(row[0])
         button_label = f"SHOW BUSINESS CARD: {row[0]}"
@@ -255,7 +194,8 @@ with c1:
             address = row1[5]
             card_holder_details = row1[6]
 
-            with c3:                     # Display the details of the business card
+            # DISPLAY SELECTED CARD DETAILS
+            with c3:                     
                 st.write(f"### BUSINESS CARD {row[0]} DETAILS ")                
                 st.write(f"Website: {website_url}")
                 st.write(f"Email: {email}")
@@ -265,26 +205,14 @@ with c1:
                 st.write(f"Card Holder & Company Details: {card_holder_details}")
 
                 # If the button is clicked, display the corresponding row
-                # Retrieve image data from MySQL database and display image
                 cursor.execute("SELECT businesscard_photo FROM business_cards WHERE id ="+str(row[0]))
                 r = cursor.fetchone()
                 if r is not None:
                     image_data = r[0]
-                    #st.write(image_data)
-                    #image_data.seek(0)
-                    #st.write(image_data)
                     image = Image.open(io.BytesIO(image_data))
                     st.image(image)
-                    
-# option = st.selectbox(
-#     'select any id to delete',
-#     l)
 
-# st.write('You selected:', option)   
-# if st.button("DELETE", key=option):
-#     cursor.execute("DELETE FROM business_cards WHERE id = "+str(option))
-#     connection.commit()
-#     st.write("DELETED BUSINESS CARD INFORMATION SUCCESS")
+# DELETE MULTIPLE ENTRIES                   
 with c1:
     selected_options = st.multiselect('Select entries to delete:', l)
 
