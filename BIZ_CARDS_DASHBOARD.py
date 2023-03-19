@@ -238,7 +238,7 @@ with c1:
             cursor.execute("DELETE FROM business_cards WHERE id = " +str(option))
         connection.commit()
         st.write("DELETED SELECTED BUSINESS CARD ENTRIES SUCCESSFULLY")
-        st.write(' ')
+    st.write(' ')
 
                     
                 
