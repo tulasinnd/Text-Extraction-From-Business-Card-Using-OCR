@@ -2,11 +2,9 @@ import easyocr as ocr  #OCR
 import streamlit as st  #Web App
 from PIL import Image #Image Processing
 import numpy as np #Image Processing 
-st. set_page_config(layout="wide")
+#st. set_page_config(layout="wide")
 import re
 import pymysql
-import streamlit as st
-from PIL import Image
 import io
 
 # Getting Secrets from Streamlit Secret File
