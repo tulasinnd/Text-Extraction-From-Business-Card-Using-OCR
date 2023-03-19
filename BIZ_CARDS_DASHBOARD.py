@@ -274,15 +274,23 @@ with c1:
                     image = Image.open(io.BytesIO(image_data))
                     st.image(image)
                     
-option = st.selectbox(
-    'select any id to delete',
-    l)
+# option = st.selectbox(
+#     'select any id to delete',
+#     l)
 
-st.write('You selected:', option)   
-if st.button("DELETE", key=option):
-    cursor.execute("DELETE FROM business_cards WHERE id = "+str(option))
-    connection.commit()
-    st.write("DELETED BUSINESS CARD INFORMATION SUCCESS")
+# st.write('You selected:', option)   
+# if st.button("DELETE", key=option):
+#     cursor.execute("DELETE FROM business_cards WHERE id = "+str(option))
+#     connection.commit()
+#     st.write("DELETED BUSINESS CARD INFORMATION SUCCESS")
+with c1:
+    selected_options = st.multiselect('Select entries to delete:', l)
+
+    if st.button('DELETE SELECTED'):
+        for option in selected_options:
+            cursor.execute("DELETE FROM business_cards WHERE id = " + option)
+        connection.commit()
+        st.write("DELETED SELECTED BUSINESS CARD ENTRIES SUCCESSFULLY")
 
                     
                 
