@@ -38,8 +38,8 @@ st.title(":orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]")
 st.write(" ")
 st.write(" ")
 st.write(" ")
-st.write("# UPLOAD ANY BUSINESS CARD IMAGE TO EXTRACT INFORMATION ")
-col1, col2,col3= st.columns([3,2,3])
+st.write("## UPLOAD ANY BUSINESS CARD IMAGE TO EXTRACT INFORMATION ")
+col1, col2,col3= st.columns([4,1,4])
 with col1:
     #image uploader
     st.write("### SELECT IMAGE")
@@ -230,8 +230,8 @@ if image is not None:
 st.write(' ')
 st.write(' ')
 st.write(' ')
-st.write('# EXPLORE BUSINESS CARDS DATABASE ')
-c1, c2,c3= st.columns([3,2,3])
+st.write('## EXPLORE BUSINESS CARDS DATABASE ')
+c1, c2,c3= st.columns([4,1,4])
 with c1: 
     st.write("### BUSINESS CARDS AVAILABLE IN DATABASE")
     cursor.execute("SELECT id FROM business_cards")
