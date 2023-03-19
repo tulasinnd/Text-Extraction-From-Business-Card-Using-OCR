@@ -9,12 +9,18 @@ import streamlit as st
 from PIL import Image
 import io
 
-# Connect to the database
+# Getting Secrets from Streamlit Secret File
+username=st.secrets['AWS_RDS_username']
+password=st.secrets['AWS_RDS_password']
+Endpoint=st.secrets['Endpoint']
+Dbase=st.secrets['DATABASE']
+
+# Connect to AWS-RDS-MYSQL
 connection = pymysql.connect(
-    host='phonepedatabase.cw0dknqm0t6h.us-east-1.rds.amazonaws.com',
-    user='admin',
-    password='12345phone',
-    database="PhonepeDB"
+    host=Endpoint,
+    user=username,
+    password=password,
+    database=Dbase
 )
 cursor = connection.cursor()
 
