@@ -245,26 +245,26 @@ with c1:
             card_holder_details = row1[6]
 
 
-                    # Display the details of the business card
-            st.write(f"# Business Card Details: ")
-            st.write(f"Website: {website_url}")
-            st.write(f"Email: {email}")
-            st.write(f"PIN Code: {pin_code}")
-            st.write(f"Phone Numbers: {phone_numbers}")
-            st.write(f"Address: {address}")
-            st.write(f"Card Holder & Company Details: {card_holder_details}")
+            with c3:                     # Display the details of the business card
+                st.write(f"# Business Card Details: ")
+                st.write(f"Website: {website_url}")
+                st.write(f"Email: {email}")
+                st.write(f"PIN Code: {pin_code}")
+                st.write(f"Phone Numbers: {phone_numbers}")
+                st.write(f"Address: {address}")
+                st.write(f"Card Holder & Company Details: {card_holder_details}")
 
-            # If the button is clicked, display the corresponding row
-            # Retrieve image data from MySQL database and display image
-            cursor.execute("SELECT businesscard_photo FROM business_cards WHERE id ="+str(row[0]))
-            r = cursor.fetchone()
-            if r is not None:
-                image_data = r[0]
-                #st.write(image_data)
-                #image_data.seek(0)
-                #st.write(image_data)
-                image = Image.open(io.BytesIO(image_data))
-                st.image(image)
+                # If the button is clicked, display the corresponding row
+                # Retrieve image data from MySQL database and display image
+                cursor.execute("SELECT businesscard_photo FROM business_cards WHERE id ="+str(row[0]))
+                r = cursor.fetchone()
+                if r is not None:
+                    image_data = r[0]
+                    #st.write(image_data)
+                    #image_data.seek(0)
+                    #st.write(image_data)
+                    image = Image.open(io.BytesIO(image_data))
+                    st.image(image)
   
             
 
