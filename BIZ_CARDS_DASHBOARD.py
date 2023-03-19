@@ -254,7 +254,9 @@ with c1:
                 st.write(f"### BUSINESS CARD {row[0]} DETAILS ")
                 d=st.button('DELETE', key='del')
                 st.write(row[0])
-                st.write(d)
+                st.write(not d)
+                q = "DELETE FROM business_cards WHERE id ="+str(row[0])
+                print(q)
                 if d:
                     q = "DELETE FROM business_cards WHERE id = %s"
                     cursor.execute(q, (row[0],))
