@@ -168,7 +168,7 @@ if image is not None:
     details=det_str
     image.seek(0)
     image_data = image.read()
-    st.write(image_data)
+    #st.write(image_data)
     
 #     #uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
 #     image_data = image.read()
@@ -258,9 +258,9 @@ for row in rows:
         r = cursor.fetchone()
         if r is not None:
             image_data = r[0]
-            st.write(image_data)
-            image_data.seek(0)
-            st.write(image_data)
+            #st.write(image_data)
+            #image_data.seek(0)
+            #st.write(image_data)
             image = Image.open(io.BytesIO(image_data))
             st.image(image)
 
