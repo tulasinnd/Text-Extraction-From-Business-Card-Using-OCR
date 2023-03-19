@@ -258,6 +258,7 @@ for row in rows:
         r = cursor.fetchone()
         if r is not None:
             image_data = r[0]
+            image_data.seek(0)
             image = Image.open(io.BytesIO(image_data))
             st.image(image)
 
