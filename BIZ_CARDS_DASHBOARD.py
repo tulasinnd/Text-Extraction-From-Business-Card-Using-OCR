@@ -34,52 +34,42 @@ cursor = connection.cursor()
 # st.markdown(format_title("UNLOCKING DATA FROM BUSINESS CARDS USING OCR"), unsafe_allow_html=True)
 # # st.title(":orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]") 
 
-st.markdown(
-    """
-    <style>
-    .title {
-        background: linear-gradient(to right, #ffecd2, #fcb69f);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+<style>
+.title {
+    background: linear-gradient(to right, #ffecd2, #fcb69f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.animate {
+    animation: neon 1.5s ease-in-out infinite alternate;
+}
+@keyframes neon {
+    from {
+        text-shadow:
+            0 0 5px #fff,
+            0 0 10px #fff,
+            0 0 15px #fff,
+            0 0 20px #ff00de,
+            0 0 35px #ff00de,
+            0 0 40px #ff00de,
+            0 0 50px #ff00de,
+            0 0 75px #ff00de;
     }
-    .animate {
-        animation: neon 1.5s ease-in-out infinite alternate;
+    to {
+        text-shadow:
+            0 0 2px #fff,
+            0 0 4px #fff,
+            0 0 6px #fff,
+            0 0 8px #ff00de,
+            0 0 14px #ff00de,
+            0 0 16px #ff00de,
+            0 0 20px #ff00de,
+            0 0 30px #ff00de;
     }
-    @keyframes neon {
-        from {
-            text-shadow:
-                0 0 10px #fff,
-                0 0 20px #fff,
-                0 0 30px #fff,
-                0 0 40px #ff00de,
-                0 0 70px #ff00de,
-                0 0 80px #ff00de,
-                0 0 100px #ff00de,
-                0 0 150px #ff00de;
-        }
-        to {
-            text-shadow:
-                0 0 5px #fff,
-                0 0 10px #fff,
-                0 0 15px #fff,
-                0 0 20px #ff00de,
-                0 0 35px #ff00de,
-                0 0 40px #ff00de,
-                0 0 50px #ff00de,
-                0 0 75px #ff00de;
-        }
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+}
+</style>
 
-st.markdown(
-    """
-    <h1 class="title animate">:orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]</h1>
-    """,
-    unsafe_allow_html=True,
-)
+<h1 class="title animate">:orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]</h1>
 
 
 
