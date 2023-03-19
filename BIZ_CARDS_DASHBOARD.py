@@ -199,6 +199,7 @@ if image is not None:
 # print('deleted')
 # connection.commit()
 
+
 cursor.execute("SELECT id FROM business_cards")
 rows = cursor.fetchall()
 
@@ -231,6 +232,8 @@ for row in rows:
         r = cursor.fetchone()
         if r is not None:
             image_data = r[0]
+            from PIL import Image
+            import io
             image = Image.open(io.BytesIO(image_data))
             st.image(image)
 
