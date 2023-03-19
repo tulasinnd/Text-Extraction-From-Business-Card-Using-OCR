@@ -212,8 +212,9 @@ for row in rows:
         r = cursor.fetchone()
         if r is not None:
             image_data = r[0]
-            image = Image.open(io.BytesIO(image_data))
-            st.image(image)
+#             image = Image.open(io.BytesIO(image_data))
+#             st.image(image)
+            st.image(image_data)
 
         cursor.execute("SELECT * FROM business_cards WHERE id ="+str(row[0]))
         row1 = cursor.fetchone()
