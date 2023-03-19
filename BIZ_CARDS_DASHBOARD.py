@@ -182,7 +182,7 @@ if image is not None:
         # with open(r'C:\Users\91939\OneDrive\Desktop\OCR_P7\DATASET\10.jpg', 'rb') as file:
         #     photo = file.read()
 
-        data = (website, email,pincode , phoneno, address, details, image)
+        data = (website, email,pincode , phoneno, address, details, io.BytesIO(image.read()))
         sql = "INSERT INTO business_cards (website_url, email, pin_code, phone_numbers, address, card_holder_details, businesscard_photo) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         cursor.execute(sql, data)
         cnx.commit()
