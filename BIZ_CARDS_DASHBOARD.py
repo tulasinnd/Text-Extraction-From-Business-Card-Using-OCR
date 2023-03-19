@@ -34,51 +34,55 @@ cursor = connection.cursor()
 # st.markdown(format_title("UNLOCKING DATA FROM BUSINESS CARDS USING OCR"), unsafe_allow_html=True)
 # # st.title(":orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]") 
 
-#00000000000000000000000000000000000000000000000
-import random
-
-# Set page layout
-st.set_page_config(
-    page_title="Unlocking Data from Business Cards using OCR",
-    page_icon=":orange:",
-    layout="wide"
+st.markdown(
+    """
+    <style>
+    .title {
+        background: linear-gradient(to right, #ffecd2, #fcb69f);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .animate {
+        animation: neon 1.5s ease-in-out infinite alternate;
+    }
+    @keyframes neon {
+        from {
+            text-shadow:
+                0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 30px #fff,
+                0 0 40px #ff00de,
+                0 0 70px #ff00de,
+                0 0 80px #ff00de,
+                0 0 100px #ff00de,
+                0 0 150px #ff00de;
+        }
+        to {
+            text-shadow:
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 15px #fff,
+                0 0 20px #ff00de,
+                0 0 35px #ff00de,
+                0 0 40px #ff00de,
+                0 0 50px #ff00de,
+                0 0 75px #ff00de;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
 )
 
-# Define the title with a colored box
-st.markdown("""
-<style>
-h1 {
-    background-color: orange;
-    color: white;
-    padding: 0.5em;
-    border-radius: 0.5em;
-    text-align: center;
-}
-</style>
-""", unsafe_allow_html=True)
-
-st.write("")
-st.write("")
-st.write("")
-st.write("")
-st.write("")
-st.write("")
-
-st.write(
-    "<h1>Unlocking Data from Business Cards using OCR</h1>",
-    unsafe_allow_html=True
+st.markdown(
+    """
+    <h1 class="title animate">:orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]</h1>
+    """,
+    unsafe_allow_html=True,
 )
 
-# Define some random moving elements in the background
-NUM_ELEMENTS = 30
-elements = ["🔵", "🔴", "🟢", "🟡", "🟣", "🟤", "🟠", "⚫", "⚪"]
 
-for i in range(NUM_ELEMENTS):
-    st.write(
-        f'<span style="position:absolute;top:{random.randint(0, 90)}%;left:{random.randint(0, 90)}%;font-size:{random.randint(10, 60)}px;">{random.choice(elements)}</span>',
-        unsafe_allow_html=True
-    )
-#0000000000000000000000000000000000000000000000000000000000000000000
+
 st.write(" ")
 st.write(" ")
 st.write(" ")
