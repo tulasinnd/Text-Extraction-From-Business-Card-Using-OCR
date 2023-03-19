@@ -37,7 +37,7 @@ st.write(" ")
 st.write(" ")
 st.write(" ")
 st.write("## UPLOAD ANY BUSINESS CARD IMAGE TO EXTRACT INFORMATION ")
-col1, col2,col3= st.columns([4,1,4])
+CD,col1, col2,col3= st.columns([0.5,4,1,4])
 with col1:
     #image uploader
     st.write("### SELECT IMAGE")
@@ -184,10 +184,10 @@ if image is not None:
 st.write(' ')
 st.write(' ')
 st.write(' ')
-col1.markdown("<style>div[data-testid='stHorizontalBlock'] { background-color: red; }</style>", unsafe_allow_html=True)
+col1.markdown("<style>div[data-testid='stHorizontalBlock'] { background-color: rgb(230, 0, 172, 0.4); }</style>", unsafe_allow_html=True)
 # DATABASE PART
 st.write('## EXPLORE BUSINESS CARDS DATABASE ')
-c1, c2,c3= st.columns([4,1,4])
+cd, c1, c2,c3= st.columns([0.5, 4,1,4])
 with c1: 
     st.write("### BUSINESS CARDS AVAILABLE IN DATABASE")
     cursor.execute("SELECT id FROM business_cards")
