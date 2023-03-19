@@ -208,13 +208,13 @@ for row in rows:
     if st.button(button_label):
         # If the button is clicked, display the corresponding row
         # Retrieve image data from MySQL database and display image
-        cursor.execute("SELECT businesscard_photo FROM business_cards WHERE id ="+str(row[0]))
-        r = cursor.fetchone()
-        if r is not None:
-            image_data = r[0]
-#             image = Image.open(io.BytesIO(image_data))
-#             st.image(image)
-            st.image(image_data)
+#         cursor.execute("SELECT businesscard_photo FROM business_cards WHERE id ="+str(row[0]))
+#         r = cursor.fetchone()
+#         if r is not None:
+#             image_data = r[0]
+# #             image = Image.open(io.BytesIO(image_data))
+# #             st.image(image)
+#             st.image(image_data)
 
         cursor.execute("SELECT * FROM business_cards WHERE id ="+str(row[0]))
         row1 = cursor.fetchone()
