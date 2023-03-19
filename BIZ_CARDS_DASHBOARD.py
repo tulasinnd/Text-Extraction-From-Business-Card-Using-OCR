@@ -2,7 +2,7 @@ import easyocr as ocr  #OCR
 import streamlit as st  #Web App
 from PIL import Image #Image Processing
 import numpy as np #Image Processing 
-#st. set_page_config(layout="wide")
+st. set_page_config(layout="wide")
 import re
 import pymysql
 import io
@@ -47,25 +47,25 @@ st.markdown(
 @keyframes neon {
     from {
         text-shadow:
+            0 0 3px #fff,
             0 0 5px #fff,
-            0 0 10px #fff,
-            0 0 15px #fff,
-            0 0 20px #ff00de,
-            0 0 35px #ff00de,
-            0 0 40px #ff00de,
-            0 0 50px #ff00de,
-            0 0 75px #ff00de;
+            0 0 7px #fff,
+            0 0 10px #ff00de,
+            0 0 10px #ff00de,
+            0 0 18px #ff00de,
+            0 0 17px #ff00de,
+            0 0 32px #ff00de;
     }
     to {
         text-shadow:
+            0 0 2px #fff,
             0 0 4px #fff,
-            0 0 9px #fff,
-            0 0 14px #fff,
-            0 0 22px #ff00de,
-            0 0 30px #ff00de,
-            0 0 42px #ff00de,
-            0 0 48px #ff00de,
-            0 0 70px #ff00de;
+            0 0 6px #fff,
+            0 0 8px #ff00de,
+            0 0 14px #ff00de,
+            0 0 16px #ff00de,
+            0 0 20px #ff00de,
+            0 0 30px #ff00de;
     }
 }
 </style>
