@@ -168,6 +168,7 @@ if image is not None:
     details=det_str
     image_data = image.read()
     st.write(image_data)
+    st.write(input_image)
 
 
     if st.button('UPLOAD TO DATABASE',key=90):
