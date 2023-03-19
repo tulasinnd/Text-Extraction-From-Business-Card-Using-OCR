@@ -232,6 +232,8 @@ for row in rows:
         r = cursor.fetchone()
         import imageio
         import io
+        import os
+        os.environ['IMREAD_BACKEND'] = 'pil'
 
         if r is not None:
             image_data = r[0]
