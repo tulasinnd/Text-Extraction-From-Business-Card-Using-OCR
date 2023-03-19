@@ -231,6 +231,7 @@ st.write(' ')
 st.write(' ')
 st.write(' ')
 st.write('## EXPLORE BUSINESS CARDS DATABASE ')
+
 c1, c2,c3= st.columns([4,1,4])
 with c1: 
     st.write("### BUSINESS CARDS AVAILABLE IN DATABASE")
@@ -239,7 +240,7 @@ with c1:
 
     # DISPLAY THE SELECTED CARD AND ITS DETAILS
     for row in rows:
-        button_label = f"SHOW BUSINESS CARD WITH ID: {row[0]}"
+        button_label = f"SHOW BUSINESS CARD: {row[0]}"
         if st.button(button_label):
             cursor.execute("SELECT * FROM business_cards WHERE id ="+str(row[0]))
             row1 = cursor.fetchone()
@@ -271,15 +272,7 @@ with c1:
                     image = Image.open(io.BytesIO(image_data))
                     st.image(image)
                     
-                if st.button("DELETE", key=row[0]):
-                    cursor.execute("DELETE FROM business_cards WHERE id = "+str(row[0]))
-                    if cursor.rowcount == -1:
-                        print("Query failed to affect any rows.")
-                    else:
-                        print(f"Deleted {cursor.rowcount} rows.")
-                    connection.commit()
-                    st.write("DELETED BUSINESS CARD INFORMATION SUCCESS")
-
+                
             
 
     
