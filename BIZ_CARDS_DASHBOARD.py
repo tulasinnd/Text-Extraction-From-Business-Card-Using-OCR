@@ -131,94 +131,125 @@ if image is not None:
         for i in fin:
             st.write('##### '+i)
             
-        # DATABASE CODE
-        
-        website=str(WEB)
-        email=str(EMAIL)
-        pincode=str(PIN)
-        phoneno=ph_str
-        address=add_str
-        det_str = ' '.join([str(elem) for elem in fin])
-        details=det_str
-        with open(image, 'rb') as file:
-            photo = file.read()
+# DATABASE CODE
+
+    website=str(WEB)
+    email=str(EMAIL)
+    pincode=str(PIN)
+    phoneno=ph_str
+    address=add_str
+    det_str = ' '.join([str(elem) for elem in fin])
+    details=det_str
+    with open(image, 'rb') as file:
+        photo = file.read()
+
+    data = (website, email,pincode , phoneno, address, details, photo)
+
+
+    import base64
+    import pymysql
+    import streamlit as st
+    from PIL import Image
+    import io
+
+    # Connect to the database
+    cnx = pymysql.connect(
+        host='phonepedatabase.cw0dknqm0t6h.us-east-1.rds.amazonaws.com',
+        user='admin',
+        password='12345phone',
+        database="PhonepeDB"
+    )
+
+    # Create the business_cards table with additional columns
+    cursor = cnx.cursor()
+    # cursor.execute("""
+    #     CREATE TABLE IF NOT EXISTS business_cards (
+    #         id INT AUTO_INCREMENT PRIMARY KEY,
+    #         website_url VARCHAR(255),
+    #         email VARCHAR(255),
+    #         pin_code VARCHAR(10),
+    #         phone_numbers VARCHAR(255),
+    #         address VARCHAR(255),
+    #         card_holder_details VARCHAR(255),
+    #         businesscard_photo MEDIUMBLOB
+    #     )
+    # """)
+
+    if st.button('UPLOAD BUSINESS CARD',key='biz'):
+
+        # Insert the image into the business_cards table
+        # with open(r'C:\Users\91939\OneDrive\Desktop\OCR_P7\DATASET\10.jpg', 'rb') as file:
+        #     photo = file.read()
 
         data = (website, email,pincode , phoneno, address, details, photo)
+        sql = "INSERT INTO business_cards (website_url, email, pin_code, phone_numbers, address, card_holder_details, businesscard_photo) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+        cursor.execute(sql, data)
+        cnx.commit()
+
+    # DISPLAY ID AS BUTTONS CODE 
+    # ========================================
+
+    # Retrieve all the ids from the business_cards table
+    cursor.execute("SELECT id FROM business_cards")
+    rows = cursor.fetchall()
+
+    # Display the ids as buttons
+    for row in rows:
+        button_label = f"SHOW BUSINESS CARD WITH ID: {row[0]}"
+        if st.button(button_label):
+            # If the button is clicked, display the corresponding row
+            cursor.execute(f"SELECT * FROM business_cards WHERE id={row[0]}")
+            row = cursor.fetchone()
+            website_url = row[1]
+            email = row[2]
+            pin_code = row[3]
+            phone_numbers = row[4]
+            address = row[5]
+            card_holder_details = row[6]
+            photo = row[7]
+
+            # Display the details of the business card
+            st.write(f"# Business Card for {card_holder_details}")
+            st.write(f"Website: {website_url}")
+            st.write(f"Email: {email}")
+            st.write(f"PIN Code: {pin_code}")
+            st.write(f"Phone Numbers: {phone_numbers}")
+            st.write(f"Address: {address}")
+            image = Image.open(io.BytesIO(photo))
+            st.image(image, caption="Business Card", use_column_width=True)
 
 
-        import base64
-        import pymysql
-        import streamlit as st
-        from PIL import Image
-        import io
 
-        # Connect to the database
-        cnx = pymysql.connect(
-            host='phonepedatabase.cw0dknqm0t6h.us-east-1.rds.amazonaws.com',
-            user='admin',
-            password='12345phone',
-            database="PhonepeDB"
-        )
+    # =========================================
 
-        # Create the business_cards table with additional columns
-        cursor = cnx.cursor()
-        # cursor.execute("""
-        #     CREATE TABLE IF NOT EXISTS business_cards (
-        #         id INT AUTO_INCREMENT PRIMARY KEY,
-        #         website_url VARCHAR(255),
-        #         email VARCHAR(255),
-        #         pin_code VARCHAR(10),
-        #         phone_numbers VARCHAR(255),
-        #         address VARCHAR(255),
-        #         card_holder_details VARCHAR(255),
-        #         businesscard_photo MEDIUMBLOB
-        #     )
-        # """)
+    # # Retrieve the image from the business_cards table
+    # cursor.execute("SELECT * FROM business_cards ")#WHERE id=1")
+    # row = cursor.fetchone()
+    # website_url = row[1]
+    # email = row[2]
+    # pin_code = row[3]
+    # phone_numbers = row[4]
+    # address = row[5]
+    # card_holder_details = row[6]
+    # photo = row[7]
 
-        if st.button('UPLOAD BUSINESS CARD',key='biz'):
+    # # Display the image using Streamlit
+    # st.write(f"# Business Card for {card_holder_details}")
+    # st.write(f"Website: {website_url}")
+    # st.write(f"Email: {email}")
+    # st.write(f"PIN Code: {pin_code}")
+    # st.write(f"Phone Numbers: {phone_numbers}")
+    # st.write(f"Address: {address}")
+    # image = Image.open(io.BytesIO(photo))
+    # st.image(image, caption="Business Card", use_column_width=True)
 
-            # Insert the image into the business_cards table
-            # with open(r'C:\Users\91939\OneDrive\Desktop\OCR_P7\DATASET\10.jpg', 'rb') as file:
-            #     photo = file.read()
-
-            data = (website, email,pincode , phoneno, address, details, photo)
-            sql = "INSERT INTO business_cards (website_url, email, pin_code, phone_numbers, address, card_holder_details, businesscard_photo) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-            cursor.execute(sql, data)
-            cnx.commit()
-
-        # DISPLAY ID AS BUTTONS CODE 
-        # ========================================
-
-        # Retrieve all the ids from the business_cards table
-        cursor.execute("SELECT id FROM business_cards")
-        rows = cursor.fetchall()
-
-        # Display the ids as buttons
-        for row in rows:
-            button_label = f"SHOW BUSINESS CARD WITH ID: {row[0]}"
-            if st.button(button_label):
-                # If the button is clicked, display the corresponding row
-                cursor.execute(f"SELECT * FROM business_cards WHERE id={row[0]}")
-                row = cursor.fetchone()
-                website_url = row[1]
-                email = row[2]
-                pin_code = row[3]
-                phone_numbers = row[4]
-                address = row[5]
-                card_holder_details = row[6]
-                photo = row[7]
-
-                # Display the details of the business card
-                st.write(f"# Business Card for {card_holder_details}")
-                st.write(f"Website: {website_url}")
-                st.write(f"Email: {email}")
-                st.write(f"PIN Code: {pin_code}")
-                st.write(f"Phone Numbers: {phone_numbers}")
-                st.write(f"Address: {address}")
-                image = Image.open(io.BytesIO(photo))
-                st.image(image, caption="Business Card", use_column_width=True)
+    # # Close the database connection
+    # cursor.close()
+    # cnx.close()
 
 
+
+        
 
         
 
