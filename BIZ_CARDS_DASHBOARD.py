@@ -53,6 +53,7 @@ if image is not None:
     input_image = Image.open(image) #read image
     with col1:
         st.image(input_image) #display image  
+        st.write(" ")
 
     result = reader.readtext(np.array(input_image))
     result_text = [] #empty list for results
@@ -183,12 +184,13 @@ if image is not None:
             st.write('Please upload business card')
 st.write(' ')
 st.write(' ')
-st.write(' ')
+
 col1.markdown("<style>div[data-testid='stHorizontalBlock'] { background-color: rgb(230, 0, 172, 0.2); }</style>", unsafe_allow_html=True)
 # DATABASE PART
 st.write('## EXPLORE BUSINESS CARDS DATABASE ')
 cd, c1, c2,c3= st.columns([0.5, 4,1,4])
 with c1: 
+    st.write(' ')
     st.write("### BUSINESS CARDS AVAILABLE IN DATABASE")
     cursor.execute("SELECT id FROM business_cards")
     rows = cursor.fetchall()
@@ -227,13 +229,16 @@ with c1:
 
 # DELETE MULTIPLE ENTRIES                   
 with c1:
-    selected_options = st.multiselect('Select entries to delete:', l)
+    st.write(' ')
+    st.write(f"### SELECT ENTRIES TO DELETE") 
+    selected_options = st.multiselect('', l)
 
     if st.button('DELETE SELECTED ENTRIES'):
         for option in selected_options:
             cursor.execute("DELETE FROM business_cards WHERE id = " +str(option))
         connection.commit()
         st.write("DELETED SELECTED BUSINESS CARD ENTRIES SUCCESSFULLY")
+        st.write(' ')
 
                     
                 
