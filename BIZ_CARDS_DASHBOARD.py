@@ -251,18 +251,7 @@ with c1:
             card_holder_details = row1[6]
 
             with c3:                     # Display the details of the business card
-                st.write(f"### BUSINESS CARD {row[0]} DETAILS ")
-                d=st.button('DELETE', key='del')
-                st.write(row[0])
-                st.write(not d)
-                q = "DELETE FROM business_cards WHERE id ="+str(row[0])
-                st.write(q)
-                if not d:
-#                     q = "DELETE FROM business_cards WHERE id = %s"
-#                     cursor.execute(q, (row[0],))
-#                     connection.commit()
-                    st.write("DELETED BUSINESS CARD INFORMATION SUCCESS")
-
+                st.write(f"### BUSINESS CARD {row[0]} DETAILS ")                
                 st.write(f"Website: {website_url}")
                 st.write(f"Email: {email}")
                 st.write(f"PIN Code: {pin_code}")
@@ -281,7 +270,12 @@ with c1:
                     #st.write(image_data)
                     image = Image.open(io.BytesIO(image_data))
                     st.image(image)
-                
+                    
+                if st.button("DELETE", key=row[0]):
+                    cursor.execute("DELETE FROM business_cards WHERE id = "+str(row[0]))
+                    connection.commit()
+                    st.write("DELETED BUSINESS CARD INFORMATION SUCCESS")
+
             
 
     
