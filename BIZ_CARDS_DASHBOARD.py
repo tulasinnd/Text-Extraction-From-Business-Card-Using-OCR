@@ -33,7 +33,7 @@ def format_title(title: str):
     return formatted_title
 
 # Use the function to format your title
-st.markdown(format_title(":orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]"), unsafe_allow_html=True)
+st.markdown(format_title("UNLOCKING DATA FROM BUSINESS CARDS USING OCR"), unsafe_allow_html=True)
 # st.title(":orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]") 
 st.write(" ")
 st.write(" ")
