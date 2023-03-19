@@ -226,6 +226,7 @@ with c1:
                     image_data = r[0]
                     image = Image.open(io.BytesIO(image_data))
                     st.image(image)
+                st.write(' ')  
 
 # DELETE MULTIPLE ENTRIES                   
 with c1:
@@ -238,18 +239,6 @@ with c1:
             cursor.execute("DELETE FROM business_cards WHERE id = " +str(option))
         connection.commit()
         st.write("DELETED SELECTED BUSINESS CARD ENTRIES SUCCESSFULLY")
-    st.write(' ')
-
-                    
+    st.write(' ')                
                 
-            
-
-    
-
-       
-
-        
-
-
-
     
