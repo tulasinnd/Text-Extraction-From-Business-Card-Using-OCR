@@ -25,7 +25,16 @@ connection = pymysql.connect(
 cursor = connection.cursor()
 
 #title
-st.title(":orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]") 
+def format_title(title: str):
+    """
+    Formats the given title with a colored box and padding
+    """
+    formatted_title = f"<div style='padding:10px;background-color:#F5A962;border-radius:10px'><h1 style='color:white;text-align:center;'>{title}</h1></div>"
+    return formatted_title
+
+# Use the function to format your title
+st.markdown(format_title(":orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]"), unsafe_allow_html=True)
+# st.title(":orange[UNLOCKING DATA FROM BUSINESS CARDS USING OCR]") 
 st.write(" ")
 st.write(" ")
 st.write(" ")
