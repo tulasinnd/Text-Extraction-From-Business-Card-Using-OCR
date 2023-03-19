@@ -227,6 +227,7 @@ if image is not None:
 
 c1, c2,c3= st.columns([3,0.5,4.5])
 with c1: 
+    st.write("### BUSINESS CARDS IN DATABASE")
     cursor.execute("SELECT id FROM business_cards")
     rows = cursor.fetchall()
 
@@ -264,6 +265,7 @@ with c1:
                 #st.write(image_data)
                 image = Image.open(io.BytesIO(image_data))
                 st.image(image)
+  
             
 
     
