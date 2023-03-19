@@ -27,7 +27,7 @@ def format_title(title: str):
     """
     Formats the given title with a colored box and padding
     """
-    formatted_title = f"<div style='padding:10px;background-color:#F5A962;border-radius:10px'><h1 style='color:white;text-align:center;'>{title}</h1></div>"
+    formatted_title = f"<div style='padding:10px;background-color:rgb(230, 0, 172, 0.3);border-radius:10px'><h1 style='color:white;text-align:center;'>{title}</h1></div>"
     return formatted_title
 
 # Use the function to format your title
@@ -184,7 +184,7 @@ if image is not None:
 st.write(' ')
 st.write(' ')
 st.write(' ')
-col1.markdown("<style>div[data-testid='stHorizontalBlock'] { background-color: rgb(230, 0, 172, 0.4); }</style>", unsafe_allow_html=True)
+col1.markdown("<style>div[data-testid='stHorizontalBlock'] { background-color: rgb(230, 0, 172, 0.2); }</style>", unsafe_allow_html=True)
 # DATABASE PART
 st.write('## EXPLORE BUSINESS CARDS DATABASE ')
 cd, c1, c2,c3= st.columns([0.5, 4,1,4])
