@@ -152,6 +152,7 @@ if image is not None:
     import streamlit as st
     from PIL import Image
     import io
+    from io import BytesIO
 
     # Connect to the database
     cnx = pymysql.connect(
