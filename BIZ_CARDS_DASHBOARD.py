@@ -206,16 +206,6 @@ rows = cursor.fetchall()
 for row in rows:
     button_label = f"SHOW BUSINESS CARD WITH ID: {row[0]}"
     if st.button(button_label):
-        # If the button is clicked, display the corresponding row
-        # Retrieve image data from MySQL database and display image
-#         cursor.execute("SELECT businesscard_photo FROM business_cards WHERE id ="+str(row[0]))
-#         r = cursor.fetchone()
-#         if r is not None:
-#             image_data = r[0]
-# #             image = Image.open(io.BytesIO(image_data))
-# #             st.image(image)
-#             st.image(image_data)
-
         cursor.execute("SELECT * FROM business_cards WHERE id ="+str(row[0]))
         row1 = cursor.fetchone()
         website_url = row1[1]
@@ -234,6 +224,16 @@ for row in rows:
         st.write(f"Phone Numbers: {phone_numbers}")
         st.write(f"Address: {address}")
         st.write(f"Card Holder & Company Details: {card_holder_details}")
+        
+        # If the button is clicked, display the corresponding row
+        # Retrieve image data from MySQL database and display image
+        cursor.execute("SELECT businesscard_photo FROM business_cards WHERE id ="+str(row[0]))
+        r = cursor.fetchone()
+        if r is not None:
+            image_data = r[0]
+            image = Image.open(io.BytesIO(image_data))
+            st.image(image)
+
         
 
 
