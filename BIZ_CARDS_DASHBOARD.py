@@ -173,14 +173,14 @@ if image is not None:
             image_data = image.read()
 
             # Insert image data into MySQL database
-#             data = (website, email, pincode , phoneno, address, details, image_data)
-#             sql = "INSERT INTO business_cards (website_url, email, pin_code, phone_numbers, address, card_holder_details, businesscard_photo) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-#             cursor.execute(sql, data)
-#             connection.commit()
-
-            cursor.execute("INSERT INTO business_cards (businesscard_photo) VALUES (%s)", (image_data,))
+            data = (website, email, pincode , phoneno, address, details, image_data)
+            sql = "INSERT INTO business_cards (website_url, email, pin_code, phone_numbers, address, card_holder_details, businesscard_photo) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            cursor.execute(sql, data)
             connection.commit()
-            st.write('uploaded to database')
+
+#             cursor.execute("INSERT INTO business_cards (businesscard_photo) VALUES (%s)", (image_data,))
+#             connection.commit()
+#             st.write('uploaded to database')
 
             # Retrieve image data from MySQL database and display image
             # cursor.execute("SELECT businesscard_photo FROM business_cards ORDER BY id DESC LIMIT 1")
