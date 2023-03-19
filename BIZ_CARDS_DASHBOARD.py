@@ -224,7 +224,10 @@ if image is not None:
 # cursor.execute("DELETE FROM business_cards")
 # print('deleted')
 # connection.commit()
-
+st.write(' ')
+st.write(' ')
+st.write(' ')
+st.write('# EXPLORE BUSINESS CARDS DATABASE ')
 c1, c2,c3= st.columns([3,1,4])
 with c1: 
     st.write("### BUSINESS CARDS AVAILABLE IN DATABASE")
@@ -234,7 +237,8 @@ with c1:
     # DISPLAY THE SELECTED CARD AND ITS DETAILS
     for row in rows:
         button_label = f"SHOW BUSINESS CARD WITH ID: {row[0]}"
-        if st.button(button_label):
+        viw=st.button(button_label)
+        if viw:
             cursor.execute("SELECT * FROM business_cards WHERE id ="+str(row[0]))
             row1 = cursor.fetchone()
             website_url = row1[1]
@@ -246,6 +250,8 @@ with c1:
 
 
             with c3:                     # Display the details of the business card
+                if not viw:
+                    st.write("#### SELECTED BUSINESS CARD DETAILS WILL APPEAR HERE")
                 st.write(f"### BUSINESS CARD {row[0]} DETAILS ")
                 delete=st.button('DELETE {row[0]}', key='del')
                 st.write(f"Website: {website_url}")
