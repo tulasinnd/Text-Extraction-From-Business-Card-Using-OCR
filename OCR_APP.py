@@ -136,3 +136,5 @@ if image is not None:
         st.write('##### :red[CARD HOLDER & COMPANY DETAILS: ] ')
         for i in fin:
             st.write('##### '+i)
+            
+        st.write(result_text)
