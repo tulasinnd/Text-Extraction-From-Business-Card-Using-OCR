@@ -133,5 +133,5 @@ if image is not None:
         for i in fin:
             st.write('##### '+i)
             
-        st.write(result_text)
-        st.write(PH)
+#         st.write(result_text)
+#         st.write(PH)
