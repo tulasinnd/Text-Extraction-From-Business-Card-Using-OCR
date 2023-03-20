@@ -68,9 +68,8 @@ if image is not None:
 
         phone_regex = re.compile(r'^\+?[\d()+-]{9,}$')
 
-        match = phone_regex.search(string)
-        if match:
-            PH.append(match.group())
+        if phone_regex.match(string):
+            PH.append(string)
             PHID.append(i)
             
         # TO FIND ADDRESS 
