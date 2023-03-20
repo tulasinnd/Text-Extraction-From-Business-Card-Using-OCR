@@ -111,7 +111,7 @@ if image is not None:
         st.write('##### :red[WEBSITE URL: ] '+ str(WEB))
         st.write('##### :red[EMAIL: ] '+ str(EMAIL)) 
         st.write('##### :red[PIN CODE: ] '+ str(PIN)) 
-        ph_str = ' '.join([str(elem) for elem in PH])
+        ph_str = ', '.join(PH)
         st.write('##### :red[PHONE NUMBER(S): ] '+ph_str)
         add_str = ' '.join([str(elem) for elem in ADD])
         st.write('##### :red[ADDRESS: ] ', add_str)
