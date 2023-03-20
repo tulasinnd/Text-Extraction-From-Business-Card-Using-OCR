@@ -138,3 +138,4 @@ if image is not None:
             st.write('##### '+i)
             
         st.write(result_text)
+        st.write(PH)
