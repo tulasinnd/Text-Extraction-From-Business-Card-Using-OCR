@@ -68,11 +68,10 @@ if image is not None:
 
         phone_regex = re.compile(r'^\+?[\d()+-]{9,}$')
 
-        for i, string in enumerate(strings):
-            match = phone_regex.search(string)
-            if match:
-                PH.append(match.group())
-                PHID.append(i)
+        match = phone_regex.search(string)
+        if match:
+            PH.append(match.group())
+            PHID.append(i)
             
         # TO FIND ADDRESS 
         keywords = ['road', 'floor', ' st ', 'st,', 'street', ' dt ', 'district',
