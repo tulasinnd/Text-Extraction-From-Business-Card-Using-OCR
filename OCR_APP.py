@@ -61,10 +61,18 @@ if image is not None:
         # TO FIND PHONE NUMBER    
         # match = re.search(r'(?:ph|phone|phno)?(?:[+-]?\d*){7,}', string)
         #match = re.search(r'(?:ph|phone|phno)?\s*(?:[+-]?\d\s*){7,}', string)
-        match = re.search(r'(?:ph|phone|phno)?\s*(?:[+-]?\d\s*[\(\)]*){7,}', string)
-        if match and len(re.findall(r'\d', string)) > 7:
-            PH.append(match.group())
-            PHID.append(i)
+#         match = re.search(r'(?:ph|phone|phno)?\s*(?:[+-]?\d\s*[\(\)]*){7,}', string)
+#         if match and len(re.findall(r'\d', string)) > 7:
+#             PH.append(match.group())
+#             PHID.append(i)
+
+        phone_regex = re.compile(r'^\+?[\d()+-]{9,}$')
+
+        for i, string in enumerate(strings):
+            match = phone_regex.search(string)
+            if match:
+                PH.append(match.group())
+                PHID.append(i)
             
         # TO FIND ADDRESS 
         keywords = ['road', 'floor', ' st ', 'st,', 'street', ' dt ', 'district',
