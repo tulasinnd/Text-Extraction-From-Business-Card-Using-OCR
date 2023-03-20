@@ -90,7 +90,7 @@ if image is not None:
         #match = re.search(r'(?:ph|phone|phno)?\s*(?:[+-]?\d\s*){7,}', string)
         match = re.search(r'(?:ph|phone|phno)?\s*(?:[+-]?\d\s*[\(\)]*){7,}', string)
         if match and len(re.findall(r'\d', string)) > 7:
-            PH.append(match.group())
+            PH.append(string)
             PHID.append(i)
             
         # TO FIND ADDRESS 
@@ -136,7 +136,7 @@ if image is not None:
         st.write('##### :blue[WEBSITE URL: ] '+ str(WEB))
         st.write('##### :blue[EMAIL: ] '+ str(EMAIL)) 
         st.write('##### :blue[PIN CODE: ] '+ str(PIN)) 
-        ph_str = ','.join([str(elem) for elem in PH])
+        ph_str = ', '.join(PH)
         st.write('##### :blue[PHONE NUMBER(S): ] '+ph_str)
         add_str = ' '.join([str(elem) for elem in ADD])
         st.write('##### :blue[ADDRESS: ] ', add_str)
