@@ -1,6 +1,6 @@
 # Text-Extraction-From-Business-Card-Using-OCR
 
-Application Link: https://tulasinnd-text-extraction-from-busin-biz-cards-dashboard-qmma71.streamlit.app/
+Application Link: https://tulasinnd-text-extraction-from-business-card-usi-ocr-app-c78inw.streamlit.app/
 
 Application Demo Video Link: https://www.linkedin.com/posts/tulasi-n-49b6111b0_unlocking-data-from-business-cards-using-activity-7039308472575815680-Zwd9?utm_source=share&utm_medium=member_desktop
 
