@@ -26,7 +26,8 @@ if image is not None:
     input_image = Image.open(image) #read image
     with col1:
         #st.write("## YOUR IMAGE")
-        # st.image(input_image) #display image        
+        # st.image(input_image) #display image    
+        st.write('EXTRACTED TEXT')
     
     result = reader.readtext(np.array(input_image))
     result_text = [] #empty list for results
