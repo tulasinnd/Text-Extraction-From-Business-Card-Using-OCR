@@ -34,7 +34,7 @@ if image is not None:
         result_text.append(text[1])
     with col3:
         for t in result_text:
-            print(t)
+            st.write(t)
 
       
           
