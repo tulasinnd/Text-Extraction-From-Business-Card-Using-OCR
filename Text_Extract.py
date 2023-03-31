@@ -33,8 +33,8 @@ if image is not None:
     for text in result:
         result_text.append(text[1])
     with col3:
-      for t in result_text:
-        print(t)
+        for t in result_text:
+            print(t)
 
       
           
